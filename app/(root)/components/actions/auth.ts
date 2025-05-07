@@ -4,7 +4,6 @@ import { GetCollection } from "@/lib/db";
 import { LoginValidation, RulesValidation } from "@/lib/rules";
 import {  CreateSession } from "@/lib/session";
 import bcrypt from 'bcryptjs'
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 
