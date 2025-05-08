@@ -1,14 +1,15 @@
-'use client';
-
+'use client'
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Github } from 'lucide-react';
+import { LoginC } from '../components/actions/auth';
 import { useActionState } from 'react';
-import { LoginAction } from '../components/actions/auth';
 
 export default function LoginPage() {
+  const [state, handleLogin, IsPending ] = useActionState(LoginC, undefined)
+
   const router = useRouter();
-  const [state, handleLogin, IsPending ] = useActionState(LoginAction, undefined)
+
 
   return (
     <div className="pt-[3%] flex items-center justify-center bg-[#0a0f1a] px-4">
@@ -27,15 +28,17 @@ export default function LoginPage() {
             <input
               type="email"
               name='Email'
+              id='Email'
               className="w-full px-4 py-2 rounded bg-[#1f2937] text-white border text-[12px] border-[#2e3a4e] focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
-               { state?.errors?.Email && (
+                          {state?.errors?.Email && (
               <ul className="mt-1 text-sm text-red-500 list-disc list-inside">
-                {state.errors.Email.map((en) => (
-                  <li key={en}>{en}</li>
+                {state.errors.Email.map((e) => (
+                  <li key={e}>{e}</li>
                 ))}
               </ul>
             )}
+
           </div>
        
 
