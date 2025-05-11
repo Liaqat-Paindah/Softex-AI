@@ -1,7 +1,7 @@
 'use server'
 
 import { GetCollection } from "@/lib/db";
-import { LoginValidation, RulesValidation } from "@/lib/rules";
+import {  LoginValidation, RulesValidation } from "@/lib/rules";
 
 import { CreateSession } from "@/lib/session";
 import bcrypt from 'bcryptjs';
@@ -118,3 +118,5 @@ export async function LoginC(state:FormState, formData: FormData) {
     Email: formData.get('Email'),
   };
 }
+
+

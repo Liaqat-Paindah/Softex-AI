@@ -26,3 +26,29 @@ export const LoginValidation= z.object({
     Email:z.string().email({message:"Please enter a valid email"}).min(1, {message:"Email is required"}).trim(),    
     Password:z.string().min(8, {message:"Password must be at least 8 characters"}).min(1, {message:"Password is required"})
 })
+
+
+
+export const CreatePostValidation = z.object({
+  Title: z
+    .string()
+    .min(1, { message: "Title is required" })
+    .max(100, { message: "Title can't be more than 100 characters" })
+    .trim(),
+
+  Date: z
+    .string()
+    .min(1, { message: "Date is required" }).trim(),
+
+  Description: z
+    .string()
+    .min(1, { message: "Description is required" })
+    .max(250, { message: "Content can't be more than 250 characters" })
+    .trim(),
+
+    Photo: z
+    .instanceof(File)
+    .refine(file => file.type.startsWith('image/'), { message: "File must be an image" })
+    .refine(file => file.size <= 5 * 1024 * 1024, { message: "File must be smaller than 5MB" })
+    .optional(),  // Make the photo optional if the user can skip it
+});
